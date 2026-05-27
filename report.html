@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laporan - FahriXZ Store</title>
+  <link rel="stylesheet" href="css/admin.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+</head>
+
+<body>
+  <div class="admin-dashboard">
+    <aside class="admin-sidebar">
+      <h2>💰 Laporan</h2>
+      <nav class="sidebar-menu">
+        <a href="admin.html">⬅️ Kembali</a>
+      </nav>
+    </aside>
+
+    <main class="admin-content">
+      <h1>💰 Laporan Keuangan</h1>
+
+      <div class="admin-stats">
+        <div class="admin-card"><h2>Rp5.000.000</h2><p>Hari Ini</p></div>
+        <div class="admin-card"><h2>Rp50.000.000</h2><p>Bulan Ini</p></div>
+        <div class="admin-card"><h2>Rp500.000.000</h2><p>Tahun Ini</p></div>
+      </div>
+
+      <div class="admin-box">
+        <h2>📄 Export Data</h2>
+        <button onclick="exportReport()" class="btn-primary" style="margin-top:15px;">📊 Export Excel</button>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    window.exportReport = function() {
+      alert('📊 Export laporan berhasil!\n(Hubungkan ke server untuk fitur lengkap)');
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Login - FahriXZ Store">
+  <title>Login - FahriXZ Store</title>
+
+  <link rel="stylesheet" href="css/auth.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+</head>
+
+<body>
+  <div class="auth-container">
+    <div class="auth-card">
+      <h1>🚀 Login</h1>
+      <p>Masuk ke FahriXZ Store</p>
+      
+      <form id="loginForm">
+        <input type="email" id="loginEmail" placeholder="Email" required>
+        <input type="password" id="loginPassword" placeholder="Password" required>
+        
+        <div class="captcha-container">
+          <div id="captchaText" class="captcha-box"></div>
+          <input type="text" id="captchaInput" placeholder="Masukkan captcha" required>
+        </div>
+        
+        <button type="submit" class="btn-primary">Login</button>
+        
+        <button type="button" onclick="googleLogin()" class="google-btn">🔵 Login dengan Google</button>
+      </form>
+      
+      <div class="auth-links">
+        <a href="forgot-password.html">Lupa Password?</a>
+        <p>Belum punya akun? <a href="register.html">Daftar</a></p>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDjSUSuUWl6GOh_vJ-GnYV1tvguv0_pRXI",
+      authDomain: "fahrixzstore.firebaseapp.com",
+      projectId: "fahrixzstore",
+      appId: "1:1070736619563:web:735cdd57d5c90373e1526e"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
+    // Generate captcha
+    function generateCaptcha() {
+      const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+      let captcha = '';
+      for (let i = 0; i < 5; i++) {
+        captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      document.getElementById('captchaText').textContent = captcha;
+      return captcha;
+    }
+    let currentCaptcha = generateCaptcha();
+
+    // Email/Password Login
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value;
+      const password = document.getElementById('loginPassword').value;
+      const captcha = document.getElementById('captchaInput').value;
+      
+      if (captcha.toUpperCase() !== currentCaptcha) {
+        alert('Captcha salah!');
+        currentCaptcha = generateCaptcha();
+        return;
+      }
+
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        alert('Login berhasil! 🎉');
+        window.location.href = 'user.html';
+      } catch (error) {
+        alert('Login gagal: ' + error.message);
+      }
+    });
+
+    // Google Login
+    window.googleLogin = async function() {
+      try {
+        await signInWithPopup(auth, provider);
+        alert('Login dengan Google berhasil! 🎉');
+        window.location.href = 'user.html';
+      } catch (error) {
+        alert('Login Google gagal: ' + error.message);
+      }
+    };
+  </script>
+</body>
+</html>

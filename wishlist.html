@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wishlist - FahriXZ Store</title>
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+</head>
+
+<body>
+  <div class="dashboard">
+    <aside class="sidebar">
+      <h2>❤️ Wishlist</h2>
+      <a href="user.html">🏠 Dashboard</a>
+      <a href="#" class="active">❤️ Wishlist</a>
+    </aside>
+
+    <main class="content">
+      <h1>❤️ Wishlist</h1>
+      <div id="wishlistContainer"></div>
+    </main>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDjSUSuUWl6GOh_vJ-GnYV1tvguv0_pRXI",
+      authDomain: "fahrixzstore.firebaseapp.com",
+      databaseURL: "https://fahrixzstore-default-rtdb.firebaseio.com",
+      projectId: "fahrixzstore"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    onValue(ref(db, 'wishlist/'), snapshot => {
+      const data = snapshot.val();
+      const container = document.getElementById('wishlistContainer');
+      if (!data) {
+        container.innerHTML = '<div class="order-card"><p>Wishlist kosong</p></div>';
+        return;
+      }
+
+      let html = '';
+      for (let id in data) {
+        const item = data[id];
+        html += `<div class="order-card"><h3>${item.product}</h3></div>`;
+      }
+      container.innerHTML = html;
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Daftar - FahriXZ Store">
+  <title>Daftar - FahriXZ Store</title>
+
+  <link rel="stylesheet" href="css/auth.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+</head>
+
+<body>
+  <div class="auth-container">
+    <div class="auth-card">
+      <h1>🚀 Daftar</h1>
+      <p>Buat akun baru</p>
+      
+      <form id="registerForm">
+        <input type="text" id="registerName" placeholder="Nama Lengkap" required>
+        <input type="email" id="registerEmail" placeholder="Email" required>
+        <input type="password" id="registerPassword" placeholder="Password" required>
+        
+        <button type="submit" class="btn-primary">Daftar Sekarang</button>
+        
+        <button type="button" onclick="googleLogin()" class="google-btn">🔵 Daftar dengan Google</button>
+      </form>
+      
+      <div class="auth-links">
+        <p>Sudah punya akun? <a href="login.html">Login</a></p>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, sendEmailVerification } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDjSUSuUWl6GOh_vJ-GnYV1tvguv0_pRXI",
+      authDomain: "fahrixzstore.firebaseapp.com",
+      projectId: "fahrixzstore",
+      appId: "1:1070736619563:web:735cdd57d5c90373e1526e"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
+    // Register
+    document.getElementById('registerForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = document.getElementById('registerName').value;
+      const email = document.getElementById('registerEmail').value;
+      const password = document.getElementById('registerPassword').value;
+
+      if (!name || !email || !password) {
+        alert('Lengkapi semua data!');
+        return;
+      }
+
+      try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        await sendEmailVerification(userCredential.user);
+        alert('Akun berhasil dibuat! Cek email untuk verifikasi.');
+        window.location.href = 'login.html';
+      } catch (error) {
+        alert('Gagal daftar: ' + error.message);
+      }
+    });
+
+    // Google Login
+    window.googleLogin = async function() {
+      try {
+        await signInWithPopup(auth, provider);
+        alert('Login dengan Google berhasil! 🎉');
+        window.location.href = 'user.html';
+      } catch (error) {
+        alert('Login Google gagal: ' + error.message);
+      }
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload Hasil - FahriXZ Store</title>
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+  <div class="admin-dashboard">
+    <aside class="admin-sidebar">
+      <h2>📤 Upload</h2>
+      <nav class="sidebar-menu">
+        <a href="admin.html">⬅️ Kembali</a>
+      </nav>
+    </aside>
+
+    <main class="admin-content">
+      <h1>📤 Upload Hasil Kerja</h1>
+
+      <div class="admin-box">
+        <h2>Pilih File</h2>
+        <input type="file" id="resultFile" accept=".jpg,.jpeg,.png,.pdf">
+        <button onclick="uploadResult()" class="btn-primary" style="margin-top:15px;">📤 Upload</button>
+      </div>
+    </main>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getStorage, ref, uploadBytes } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDjSUSuUWl6GOh_vJ-GnYV1tvguv0_pRXI",
+      authDomain: "fahrixzstore.firebaseapp.com",
+      storageBucket: "fahrixzstore.firebasestorage.app",
+      projectId: "fahrixzstore"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const storage = getStorage(app);
+
+    window.uploadResult = async function() {
+      const file = document.getElementById('resultFile').files[0];
+      if (!file) {
+        alert('Pilih file!');
+        return;
+      }
+
+      try {
+        const storageRef = ref(storage, 'results/' + file.name);
+        await uploadBytes(storageRef, file);
+        alert('File berhasil diupload!');
+      } catch (error) {
+        alert('Gagal: ' + error.message);
+      }
+    };
+  </script>
+</body>
+</html>

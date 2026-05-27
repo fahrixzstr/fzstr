@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support - FahriXZ Store</title>
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body>
+  <div class="dashboard">
+    <aside class="sidebar">
+      <h2>📞 Support</h2>
+      <a href="index.html">🏠 Home</a>
+      <a href="#" class="active">📞 Support</a>
+    </aside>
+
+    <main class="content">
+      <h1>📞 Support Center</h1>
+
+      <div class="stats-grid">
+        <div class="stats-card">
+          <h2>WhatsApp</h2>
+          <p>Fast Response</p>
+          <a href="https://wa.me/6285609949819"><button class="btn-primary" style="margin-top:10px;">Chat</button></a>
+        </div>
+        <div class="stats-card">
+          <h2>Telegram</h2>
+          <p>Support Telegram</p>
+          <a href="https://t.me/FahriXzStore"><button class="btn-primary" style="margin-top:10px;">Open</button></a>
+        </div>
+        <div class="stats-card">
+          <h2>Email</h2>
+          <p>Support Email</p>
+          <a href="mailto:fahrixz67@gmail.com"><button class="btn-primary" style="margin-top:10px;">Kirim</button></a>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

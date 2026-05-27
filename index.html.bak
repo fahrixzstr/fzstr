@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
+  <meta name="description" content="FahriXZ Store - seribu produk digital dalam satu tempat">
+  <title>FahriXz Store | Digital Premium</title>
+
+<!-- PWA -->
+<link rel="manifest" href="pwa/manifest.json">
+=======
+  <meta name="description" content="FahriXZ Store - Beli Akun Digital, Upgrade E-Wallet, QRIS, Jasa Kreatif">
+  <title>FahriXZ Store | Digital Premium</title>
+
+<!-- PWA -->
+<link rel="manifest" href="pwa/manifest.js">
+>>>>>>> 4ad1937af8b22988b50e039f02d3f368e57c5c1c
+<meta name="theme-color" content="#00d9ff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animation.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap">
+  
+<<<<<<< HEAD
+  <link rel="manifest" href="pwa/manifest.json">
+=======
+  <link rel="manifest" href="pwa/manifest.js">
+>>>>>>> 4ad1937af8b22988b50e039f02d3f368e57c5c1c
+  <meta name="theme-color" content="#00d9ff">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+</head>
+
+<body>
+<<<<<<< HEAD
+
+=======
+>>>>>>> 4ad1937af8b22988b50e039f02d3f368e57c5c1c
+  <!-- Splash Screen -->
+  <div id="splash" style="position:fixed;inset:0;background:#0a0a0f;display:flex;justify-content:center;align-items:center;z-index:9999;flex-direction:column;">
+    <div style="width:50px;height:50px;border:4px solid rgba(0,217,255,0.2);border-top-color:#00d9ff;border-radius:50%;animation:spin 1s linear infinite;"></div>
+    <p style="margin-top:20px;color:#00d9ff;font-weight:600;">Loading...</p>
+    <style>@keyframes spin{to{transform:rotate(360deg)}}</style>
+  </div>
+
+  <!-- Promo Bar -->
+  <div class="promo-bar">🔥 FLASH SALE • Diskon hingga 50% • Trusted Store</div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+<<<<<<< HEAD
+<h2>
+  <img src="assets/image/logo.png" alt="Logo FahriXZ" style="height: 24px; vertical-align: middle; margin-right: 8px;">
+  FahriXz
+</h2>
+    <div class="nav-links">
+      <a href="#produk">Produk</a>
+      <a href="#testimoni">Testimoni</a>
+      <a href="support.html" style="color:#00d9ff;">Customer Service</a>
+      <a href="ticket.html" style="color:#00d9ff;">Ticket</a>
+=======
+    <h2>⚡ FahriXZ</h2>
+    <div class="nav-links">
+      <a href="#produk">Produk</a>
+      <a href="#testimoni">Testimoni</a>
+>>>>>>> 4ad1937af8b22988b50e039f02d3f368e57c5c1c
+      <a href="#faq">FAQ</a>
+      <a href="login.html" style="color:#00d9ff;">Login</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div>
+      <h1>Jasa Digital<br><span style="color:#00d9ff;">Premium</span></h1>
+      <p>Trusted store untuk upgrade e-wallet, QRIS, streaming, AI tools, dan jasa kreatif.</p>
+      <a href="#produk" class="btn-primary">Lihat Produk</a>
+    </div>
+    <img src="assets/image/banner1.jpg" class="hero-image" alt="Banner" onerror="this.style.display='none'">
+  </section>
+
+  <!-- Products -->
+  <section id="produk" style="padding:60px 5%;">
+    <h2 style="text-align:center;font-size:2.5rem;margin-bottom:40px;">🔥 <span style="color:#00d9ff;">Produk</span> Trending</h2>
+    
+    <!-- Filter -->
+    <div class="category-filter" style="display:flex;gap:15px;justify-content:center;flex-wrap:wrap;margin-bottom:40px;">
+      <button class="filter-btn active" data-category="all" style="padding:12px 25px;background:#00d9ff;color:#000;border:none;border-radius:50px;font-weight:600;cursor:pointer;">Semua</button>
+      <button class="filter-btn" data-category="ewallet" style="padding:12px 25px;background:#12121a;color:#fff;border:1px solid #00d9ff;border-radius:50px;cursor:pointer;">E-Wallet</button>
+      <button class="filter-btn" data-category="bank" style="padding:12px 25px;background:#12121a;color:#fff;border:1px solid #00d9ff;border-radius:50px;cursor:pointer;">Bank</button>
+      <button class="filter-btn" data-category="qris" style="padding:12px 25px;background:#12121a;color:#fff;border:1px solid #00d9ff;border-radius:50px;cursor:pointer;">QRIS</button>
+      <button class="filter-btn" data-category="streaming" style="padding:12px 25px;background:#12121a;color:#fff;border:1px solid #00d9ff;border-radius:50px;cursor:pointer;">Streaming</button>
+      <button class="filter-btn" data-category="ai" style="padding:12px 25px;background:#12121a;color:#fff;border:1px solid #00d9ff;border-radius:50px;cursor:pointer;">AI</button>
+      <button class="filter-btn" data-category="service" style="padding:12px 25px;background:#12121a;color:#fff;border:1px solid #00d9ff;border-radius:50px;cursor:pointer;">Jasa</button>
+    </div>
+    
+    <!-- Product Grid -->
+    <div id="productGrid" class="product-grid"></div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats">
+    <div class="stats-card"><h1>12000+</h1><p>Transaksi</p></div>
+    <div class="stats-card"><h1>8000+</h1><p>User</p></div>
+    <div class="stats-card"><h1>4.9</h1><p>Rating</p></div>
+  </section>
+
+  <!-- Testimoni -->
+  <section id="testimoni" style="padding:60px 5%;">
+    <h2 style="text-align:center;font-size:2.5rem;margin-bottom:40px;">⭐ <span style="color:#00d9ff;">Testimoni</span></h2>
+    <div class="testi-grid">
+      <div class="testi-card"><p style="color:#00d9ff;font-weight:600;">Trusted Banget 🔥</p><p style="color:#a0a0b0;margin-top:10px;">Process cepat, admin responsif.</p></div>
+      <div class="testi-card"><p style="color:#00d9ff;font-weight:600;">Fast Respon ⚡</p><p style="color:#a0a0b0;margin-top:10px;">Tidak perlu lama, langsung jadi.</p></div>
+      <div class="testi-card"><p style="color:#00d9ff;font-weight:600;">Recommended 👑</p><p style="color:#a0a0b0;margin-top:10px;">Tempat terbaik!</p></div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" style="padding:60px 5%;">
+    <h2 style="text-align:center;font-size:2.5rem;margin-bottom:40px;">❓ <span style="color:#00d9ff;">FAQ</span></h2>
+    <div style="max-width:800px;margin:auto;">
+      <div class="faq-item">
+        <button class="faq-question">Apakah aman?<span>+</span></button>
+        <div class="faq-answer">Ya 100% aman! Transaction melalui Firebase dan chat WhatsApp.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Berapa lama proses?<span>+</span></button>
+        <div class="faq-answer">Estimasi 5-30 menit tergantung antrian.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="background:#050508;padding:40px 5%;text-align:center;border-top:1px solid rgba(0,217,255,0.2);">
+    <p style="color:#a0a0b0;">© 2025 FahriXZ Store • Trusted Digital Service</p>
+    <p style="color:#00d9ff;margin-top:10px;">WhatsApp: 085609949819</p>
+  </footer>
+
+<<<<<<< HEAD
+  <!-- Floating Button Container (tambahkan bersama floating WA Anda) -->
+<div class="floating-container" id="floatingContainer" style="z-index: 9999;">
+  <!-- Floating Telegram -->
+  <a href="https://t.me/usernameTelegram" target="_blank" rel="noopener" class="floating-btn btn-tg" title="Telegram" aria-label="Telegram">
+    <svg style="width:24px;height:24px;fill:#fff;" viewBox="0 0 24 24">
+      <path d="M9.43 15.47l.31 4.46c.44 0 .63-.19.86-.42l2.07-1.98 4.3 3.15c.79.44 1.35.21 1.55-.73l2.81-13.25c.27-1.28-.45-1.79-1.3-1.48L3.8 9.82c-1.23.48-1.22 1.17-.21 1.5l4.42 1.38 10.26-6.47c.49-.3.94-.13.57.17"/>
+    </svg>
+  </a>
+
+  <!-- Floating Saluran WA -->
+  <a href="https://wa.me/123456789?text=Halo%20Saluran" target="_blank" rel="noopener" class="floating-btn btn-wa-channel" title="Saluran WA" aria-label="Saluran WhatsApp">
+    <svg style="width:24px;height:24px;fill:#fff;" viewBox="0 0 24 24">
+      <path d="M20 2H4a2 2 0 0 0-2 2v16l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/>
+    </svg>
+  </a>
+
+  <!-- Floating tombol utama WhatsApp (nomor yang selalu muncul) -->
+  <a href="https://wa.me/6285609949819" target="_blank" rel="noopener" class="floating-btn btn-wa" title="WhatsApp" aria-label="WhatsApp">
+    <svg style="width:28px;height:28px;fill:#fff;" viewBox="0 0 24 24">
+      <path d="M20.52 3.48a11.66 11.66 0 0 0-16.53 0c-4.57 4.57-4 12.98 1.37 16.78L3 21l1.75-3.6a11.7 11.7 0 0 0 2.68.34c6.45 0 11.69-5.24 11.69-11.68a11.7 11.7 0 0 0-1.59-6.48ZM12.08 18a5 5 0 0 1-2.57-.7L8 17l-.56-1.56a5.14 5.14 0 0 1-1.3-2.88A5.1 5.1 0 0 1 9.12 9a1.29 1.29 0 0 1 1.84-.56l.51.38a1.33 1.33 0 0 1 .4 1.08l-.12.88a.36.36 0 0 1-.56.3 2.54 2.54 0 0 0-1.95-.45 1 1 0 0 0-.7.52 3.07 3.07 0 0 0-.43 1.33c0 .77 1 1.72 2.32 2.15a2.47 2.47 0 0 0 2.51-.7l1.17-1.17Z"/>
+    </svg>
+  </a>
+
+  <!-- Tombol toggle untuk munculkan tombol floating Telegram dan Saluran WA -->
+  <button class="floating-btn btn-toggle" id="btnToggle" title="Tampilkan Semua" aria-label="Toggle floating buttons">
+    &gt;
+  </button>
+</div>
+
+<!-- Tambahan script untuk fungsi toggle -->
+<script>
+  const btnToggle = document.getElementById('btnToggle');
+  const floatingContainer = document.getElementById('floatingContainer');
+
+  btnToggle.addEventListener('click', () => {
+    floatingContainer.classList.toggle('show');
+    btnToggle.classList.toggle('active');
+
+    btnToggle.title = btnToggle.classList.contains('active') ? 'Sembunyikan Semua' : 'Tampilkan Semua';
+  });
+</script>
+=======
+  <!-- Floating WhatsApp -->
+  <a href="https://wa.me/6285609949819" class="floating-wa">💬</a>
+>>>>>>> 4ad1937af8b22988b50e039f02d3f368e57c5c1c
+
+  <!-- Theme Toggle -->
+  <button id="themeToggle" style="position:fixed;top:80px;right:20px;padding:12px 20px;background:#12121a;border:1px solid #00d9ff;border-radius:50px;color:#00d9ff;cursor:pointer;z-index:999;">🌙</button>
+
+  <!-- Scripts -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
+    import { getDatabase } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDjSUSuUWl6GOh_vJ-GnYV1tvguv0_pRXI",
+      authDomain: "fahrixzstore.firebaseapp.com",
+      databaseURL: "https://fahrixzstore-default-rtdb.firebaseio.com",
+      projectId: "fahrixzstore",
+      storageBucket: "fahrixzstore.firebasestorage.app",
+      messagingSenderId: "1070736619563",
+      appId: "1:1070736619563:web:735cdd57d5c90373e1526e",
+      measurementId: "G-H7QL79SSMX"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    getAnalytics(app);
+    console.log("✅ Firebase initialized!");
+  </script>
+
+  <script src="js/product.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/utils.js"></script>
+
+  <script>
+    // Hide splash
+    window.addEventListener('load', () => {
+      setTimeout(() => document.getElementById('splash').style.display = 'none', 1500);
+    });
+  </script>
+ 
+ <script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/pwa/service-worker.js')
+      .then((registration) => {
+        console.log('PWA Service Worker registered:', registration);
+      })
+      .catch((error) => {
+        console.log('PWA Service Worker registration failed:', error);
+      });
+  });
+}
+</script>
+</body>
+</html>

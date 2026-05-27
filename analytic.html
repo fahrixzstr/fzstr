@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Analytics - FahriXZ Store">
+  <title>Analytics - FahriXZ Store</title>
+
+  <link rel="stylesheet" href="css/admin.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+  <div class="admin-dashboard">
+    <aside class="admin-sidebar">
+      <h2>📈 Analytics</h2>
+      <nav class="sidebar-menu">
+        <a href="admin.html">📊 Dashboard</a>
+        <a href="index.html">🌐 Lihat Web</a>
+      </nav>
+    </aside>
+
+    <main class="admin-content">
+      <h1>📈 Statistik Website</h1>
+
+      <div class="admin-stats">
+        <div class="admin-card">
+          <h2 id="monthlyRevenue">Rp 0</h2>
+          <p>Pendapatan Bulanan</p>
+        </div>
+        <div class="admin-card">
+          <h2 id="totalOrders">0</h2>
+          <p>Total Order</p>
+        </div>
+        <div class="admin-card">
+          <h2 id="activeUsers">0</h2>
+          <p>User Aktif</p>
+        </div>
+      </div>
+
+      <div class="charts-container" style="display:grid;grid-template-columns:1fr 1fr;gap:25px;margin-top:30px;">
+        <div class="admin-box">
+          <h2>📊 Grafik Order (7 Hari)</h2>
+          <canvas id="orderChart"></canvas>
+        </div>
+        <div class="admin-box">
+          <h2>💰 Grafik Pendapatan (30 Hari)</h2>
+          <canvas id="revenueChart"></canvas>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDjSUSuUWl6GOh_vJ-GnYV1tvguv0_pRXI",
+      authDomain: "fahrixzstore.firebaseapp.com",
+      databaseURL: "https://fahrixzstore-default-rtdb.firebaseio.com",
+      projectId: "fahrixzstore"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    // Load stats
+    onValue(ref(db, 'stats/'), snapshot => {
+      const data = snapshot.val();
+      if (data) {
+        document.getElementById('monthlyRevenue').textContent = 'Rp ' + (data.monthlyRevenue || 0).toLocaleString();
+        document.getElementById('totalOrders').textContent = data.totalOrders || 0;
+        document.getElementById('activeUsers').textContent = data.activeUsers || 0;
+      }
+    });
+
+    // Order Chart
+    new Chart(document.getElementById('orderChart'), {
+      type: 'line',
+      data: {
+        labels: ['Sen','Sel','Rab','Kam','Jum','Sab','Min'],
+        datasets: [{label:'Order',data:[12,19,10,15,25,32,40],borderColor:'#00d9ff',backgroundColor:'rgba(0,217,255,0.1)',borderWidth:3,fill:true,tension:0.4}]
+      },
+      options: {responsive:true}
+    });
+
+    // Revenue Chart
+    new Chart(document.getElementById('revenueChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Minggu 1','Minggu 2','Minggu 3','Minggu 4'],
+        datasets: [{label:'Pendapatan',data:[5000000,7500000,6000000,6500000],backgroundColor:['#00d9ff','#667eea','#00d9ff','#667eea'],borderRadius:8}]
+      },
+      options: {responsive:true}
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+// js/theme.js
+// Dark/Light Mode Toggle
+
+const THEME_KEY = 'fahrixz_theme';
+
+const themeConfig = {
+  dark: {
+    '--bg-primary': '#0a0a0f',
+    '--bg-secondary': '#12121a',
+    '--text-primary': '#ffffff',
+    '--text-secondary': '#a0a0b0',
+    '--accent': '#00d9ff'
+  },
+  light: {
+    '--bg-primary': '#f8fafc',
+    '--bg-secondary': '#ffffff',
+    '--text-primary': '#1a1a2e',
+    '--text-secondary': '#6c757d',
+    '--accent': '#00a8cc'
+  }
+};
+
+function initTheme() {
+  const savedTheme = localStorage.getItem(THEME_KEY

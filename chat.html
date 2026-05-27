@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Live Chat - FahriXZ Store">
+  <title>Live Chat - FahriXZ Store</title>
+
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+  
+  <style>
+    .chat-box{background:#12121a;border-radius:20px;padding:20px;height:600px;display:flex;flex-direction:column;}
+    #chatMessages{flex:1;overflow-y:auto;padding:10px;}
+    .chat-message{padding:12px 16px;border-radius:16px;margin-bottom:12px;max-width:70%;word-wrap:break-word;}
+    .chat-message.user{background:#00d9ff;color:#000;margin-left:auto;}
+    .chat-message.admin{background:#1a1a25;color:#fff;}
+    .chat-input{display:flex;gap:10px;margin-top:15px;}
+    .chat-input input{flex:1;padding:14px;border:none;border-radius:14px;background:#1a1a25;color:#fff;}
+  </style>
+</head>
+
+<body>
+  <div class="dashboard">
+    <aside class="sidebar">
+      <h2>💬 Support</h2>
+      <a href="index.html">🏠 Home</a>
+      <a href="user.html">👤 Dashboard</a>
+    </aside>
+
+    <main class="content">
+      <div class="chat-box">
+        <div class="chat-header" style="padding:15px;background:linear-gradient(90deg,#00d9ff,#667eea);border-radius:14px 14px 0 0;display:flex;align-items:center;gap:10px;">
+          <span style="width:10px;height:10px;background:#22c55e;border-radius:50%;animation:pulse 2s infinite;"></span>
+          <span style="color:#000;font-weight:700;">Live Chat Support</span>
+          <style>@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.5}}</style>
+        </div>
+        
+        <div id="chatMessages">
+          <div class="chat-message admin">👋 Halo! Selamat datang di FahriXZ Store. Ada yang bisa kami bantu?</div>
+        </div>
+        
+        <div class="chat-input">
+          <input type="text" id="chatInput" placeholder="Tulis pesan...">
+          <button onclick="sendChat()" class="btn-primary">Kirim</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getDatabase, ref, push, onValue, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDjSUSuUWl6GOh_vJ-GnYV1tvguv0_pRXI",
+      authDomain: "fahrixzstore.firebaseapp.com",
+      databaseURL: "https://fahrixzstore-default-rtdb.firebaseio.com",
+      projectId: "fahrixzstore"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    // Send Chat
+    window.sendChat = function() {
+      const input = document.getElementById('chatInput');
+      if (!input.value) return;
+      
+      push(ref(db, 'chat/'), {
+        message: input.value,
+        sender: 'user',
+        createdAt: serverTimestamp()
+      });
+      
+      input.value = '';
+    };
+
+    // Load Chat
+    onValue(ref(db, 'chat/'), snapshot => {
+      const data = snapshot.val();
+      const container = document.getElementById('chatMessages');
+      if (!data) return;
+      
+      let html = '';
+      for (let id in data) {
+        const item = data[id];
+        html += `<div class="chat-message ${item.sender}">${item.message}</div>`;
+      }
+      container.innerHTML = html;
+      container.scrollTop = container.scrollHeight;
+    });
+  </script>
+</body>
+</html>

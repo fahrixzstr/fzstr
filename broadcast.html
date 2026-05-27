@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Broadcast Promo - FahriXZ Store">
+  <title>Broadcast Promo - FahriXZ Store</title>
+
+  <link rel="stylesheet" href="css/admin.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+</head>
+
+<body>
+  <div class="admin-dashboard">
+    <aside class="admin-sidebar">
+      <h2>📢 Broadcast</h2>
+      <nav class="sidebar-menu">
+        <a href="admin.html">⬅️ Kembali</a>
+      </nav>
+    </aside>
+
+    <main class="admin-content">
+      <h1>📢 Broadcast Promo</h1>
+
+      <div class="admin-box">
+        <h2>Kirim Promo ke Semua User</h2>
+        
+        <form id="broadcastForm">
+          <input type="text" id="broadcastTitle" placeholder="Judul Promo" required>
+          <textarea id="broadcastMessage" placeholder="Tulis pesan promo..." rows="6" required></textarea>
+          <input type="url" id="broadcastLink" placeholder="Link (Opsional)">
+          
+          <button type="submit" class="btn-primary">📢 Kirim Broadcast</button>
+          <button type="button" onclick="previewBroadcast()" class="btn-secondary">👁️ Preview</button>
+        </form>
+      </div>
+
+      <div class="admin-box">
+        <h2>📜 Riwayat Broadcast</h2>
+        <div id="broadcastHistory">
+          <p class="empty-state">Belum ada broadcast</p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getDatabase, ref, push, set, onValue, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7

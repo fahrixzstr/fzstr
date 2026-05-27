@@ -1,0 +1,470 @@
+/* =========================
+FAHRIXZ STORE - GAMING LUXURY STYLE
+============================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #00d9ff;
+  --primary-dark: #00a8cc;
+  --secondary: #667eea;
+<<<<<<< HEAD
+  --bg-white: #ffffff;
+=======
+>>>>>>> 4ad1937af8b22988b50e039f02d3f368e57c5c1c
+  --bg-dark: #0a0a0f;
+  --bg-card: #12121a;
+  --bg-input: #1a1a25;
+  --text-white: #ffffff;
+  --text-gray: #a0a0b0;
+  --border: rgba(0, 217, 255, 0.2);
+  --success: #22c55e;
+  --error: #ef4444;
+  --warning: #f59e0b;
+}
+
+body {
+  background: var(--bg-dark);
+  color: var(--text-white);
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* =========================
+PROMO BAR
+============================ */
+
+.promo-bar {
+  background: linear-gradient(90deg, var(--primary), var(--secondary), var(--primary));
+  background-size: 200% 100%;
+  padding: 12px;
+  text-align: center;
+  font-weight: 700;
+  color: #000;
+  animation: gradientMove 3s linear infinite;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* =========================
+NAVBAR
+============================ */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 5%;
+  background: rgba(10, 10, 15, 0.95);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+.navbar h2 {
+  color: var(--primary);
+  font-size: 1.5rem;
+  text-shadow: 0 0 20px rgba(0, 217, 255, 0.5);
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links a {
+  color: var(--text-white);
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  color: var(--primary);
+  text-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+}
+
+.nav-links a.active {
+  color: var(--primary);
+}
+
+/* =========================
+HERO SECTION
+============================ */
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 60px 5%;
+  gap: 40px;
+  min-height: 70vh;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.hero h1 span {
+  color: var(--primary);
+  text-shadow: 0 0 30px rgba(0, 217, 255, 0.5);
+}
+
+.hero p {
+  color: var(--text-gray);
+  font-size: 1.1rem;
+  margin: 20px 0 30px;
+}
+
+.hero-image {
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 0 40px rgba(0, 217, 255, 0.3);
+}
+
+/* =========================
+BUTTONS
+============================ */
+
+.btn-primary {
+  display: inline-block;
+  padding: 15px 35px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: #000;
+  font-weight: 700;
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: 0 0 30px rgba(0, 217, 255, 0.4);
+  transition: 0.3s;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 50px rgba(0, 217, 255, 0.6);
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  padding: 12px 25px;
+  background: var(--bg-card);
+  color: var(--text-white);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-secondary:hover {
+  background: var(--primary);
+  color: #000;
+}
+
+/* =========================
+FILTER BUTTONS
+============================ */
+
+.category-filter {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.filter-btn {
+  padding: 12px 25px;
+  background: var(--bg-card);
+  color: var(--text-white);
+<<<<<<< HEAD
+  border: 1px solid var
+=======
+  border: 1px solid var(--primary);
+  border-radius: 50px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: 600;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background: var(--primary);
+  color: #000;
+}
+
+/* =========================
+PRODUCT GRID
+============================ */
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+.product-card {
+  background: var(--bg-card);
+  padding: 20px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  transition: 0.3s;
+  position: relative;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 30px rgba(0, 217, 255, 0.3);
+}
+
+.product-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 15px;
+  margin-bottom: 15px;
+}
+
+.product-card h3 {
+  margin-bottom: 8px;
+}
+
+.product-card p {
+  color: var(--text-gray);
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.product-card h2 {
+  color: var(--primary);
+  margin: 10px 0;
+}
+
+.product-card .badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--primary);
+  color: #000;
+}
+
+/* =========================
+STATS
+============================ */
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  padding: 50px 5%;
+  background: var(--bg-dark);
+}
+
+.stats-card {
+  background: var(--bg-card);
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  border: 1px solid var(--border);
+  transition: 0.3s;
+}
+
+.stats-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
+}
+
+.stats-card h1,
+.stats-card h2 {
+  color: var(--primary);
+  font-size: 2.5rem;
+}
+
+.stats-card p {
+  color: var(--text-gray);
+  margin-top: 5px;
+}
+
+/* =========================
+TESTIMONI
+============================ */
+
+.testi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+.testi-card {
+  background: var(--bg-card);
+  padding: 25px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+}
+
+.testi-card p {
+  margin-top: 10px;
+}
+
+/* =========================
+FAQ
+============================ */
+
+.faq-item {
+  background: var(--bg-card);
+  margin-bottom: 15px;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.faq-question {
+  width: 100%;
+  padding: 20px;
+  background: transparent;
+  border: none;
+  color: var(--text-white);
+  text-align: left;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq-question span {
+  color: var(--primary);
+}
+
+.faq-answer {
+  display: none;
+  padding: 0 20px 20px;
+  color: var(--text-gray);
+}
+
+.faq-answer.show {
+  display: block;
+}
+
+/* =========================
+FOOTER
+============================ */
+
+footer {
+  background: #050508;
+  padding: 40px 5%;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+
+footer p {
+  color: var(--text-gray);
+}
+
+footer a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+/* =========================
+FLOATING BUTTONS
+============================ */
+
+.floating-wa {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  box-shadow: 0 0 20px rgba(37, 211, 102, 0.5);
+  z-index: 998;
+  transition: 0.3s;
+}
+
+.floating-wa:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 30px rgba(37, 211, 102, 0.7);
+}
+
+/* =========================
+TOAST NOTIFICATION
+============================ */
+
+.toast {
+  position: fixed;
+  top: 30px;
+  right: -400px;
+  background: var(--primary);
+  padding: 16px 25px;
+  border-radius: 14px;
+  color: #000;
+  z-index: 9999;
+  transition: 0.4s;
+  box-shadow: 0 0 20px rgba(0, 217, 255, 0.4);
+}
+
+.toast.show {
+  right: 30px;
+}
+
+.toast.error {
+  background: var(--error);
+  color: #fff;
+}
+
+/* =========================
+SCROLLBAR
+============================ */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
+}
+
+/* =========================
+LOADING SPINNER
+============================ */
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgba(0, 217, 255, 0
+>>>>>>> 4ad1937af8b22988b50e039f02d3f368e57c5c1c

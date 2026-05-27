@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tracking - FahriXZ Store</title>
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+</head>
+
+<body>
+  <div class="dashboard">
+    <aside class="sidebar">
+      <h2>📦 Tracking</h2>
+      <a href="index.html">🏠 Home</a>
+      <a href="user.html">👤 Dashboard</a>
+    </aside>
+
+    <main class="content">
+      <h1>📦 Tracking Pesanan</h1>
+
+      <div class="tracking-box">
+        <div class="track-form">
+          <input type="text" id="trackOrderId" placeholder="Masukkan Order ID">
+          <button onclick="startTracking()">Lacak</button>
+        </div>
+        <div id="trackingDetail"></div>
+      </div>
+    </main>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDjSUSuUWl6GOh_vJ-GnYV1tvguv0_pRXI",
+      authDomain: "fahrixzstore.firebaseapp.com",
+      databaseURL: "https://fahrixzstore-default-rtdb.firebaseio.com",
+      projectId: "fahrixzstore"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    window.startTracking = function() {
+      const id = document.getElementById('trackOrderId').value;
+      const container = document.getElementById('trackingDetail');
+
+      if (!id) {
+        container.innerHTML = '<p>Masukkan Order ID!</p>';
+        return;
+      }
+
+      onValue(ref(db, 'orders/' + id), snapshot => {
+        const data = snapshot.val();
+        if (!data) {
+          container.innerHTML = '<p>Order tidak ditemukan</p>';
+          return;
+        }
+
+        const statusIndex = data.status === 'Pending' ? 0 : data.status === 'Diproses' ? 1 : 2;
+        container.innerHTML = `
+          <div class="order-card">
+            <h3>${data.orderId}</h3>
+            <p>Produk: ${data.product}</p>
+            <p>Status: <span style="color:#00d9ff;">${data.status}</span></p>
+            <div class="tracking-step ${statusIndex >= 0 ? 'active' : ''}">🟡 Pending</div>
+            <div class="tracking-step ${statusIndex >= 1 ? 'active' : ''}">🔵 Diproses</div>
+            <div class="tracking-step ${statusIndex >= 2 ? 'active' : ''}">🟢 Selesai</div>
+          </div>
+        `;
+      }, { onlyOnce: true });
+    };
+  </script>
+</body>
+</html>

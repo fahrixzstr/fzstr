@@ -1,0 +1,21 @@
+{
+"name":"FahriXZ Store",
+"short_name":"FahriXZ",
+"start_url":"/index.html",
+"display":"standalone",
+"background_color":"#020617",
+"theme_color":"#2563eb",
+"orientation":"portrait",
+"icons":[
+{
+"src":"assets/icons/icon-192.png",
+"sizes":"192x192",
+"type":"image/png"
+},
+{
+"src":"assets/icons/icon-512.png",
+"sizes":"512x512",
+"type":"image/png"
+}
+]
+}

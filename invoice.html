@@ -1,0 +1,22 @@
+
+
+export function generateInvoice(orderId, product, name, total) {
+  const invoice = `
+🧾 INVOICE - FahriXZ Store
+━━━━━━━━━━━━━━━━━━
+Order ID    : ${orderId}
+Produk     : ${product}
+Nama       : ${name}
+Total      : ${total}
+━━━━━━━━━━━━━━━━━━
+Status     : Lunas
+Tanggal    : ${new Date().toLocaleString('id-ID')}
+━━━━━━━━━━━━━━━━━━
+Terima kasih kepercayaan Anda!
+  `;
+  return invoice;
+}
+
+export function downloadInvoice() {
+  window.print();
+}

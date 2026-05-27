@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pengaturan - FahriXZ Store</title>
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+</head>
+
+<body>
+  <div class="dashboard">
+    <aside class="sidebar">
+      <h2>⚙️ Pengaturan</h2>
+      <a href="user.html">🏠 Dashboard</a>
+      <a href="#" class="active">⚙ Pengaturan</a>
+    </aside>
+
+    <main class="content">
+      <h1>⚙️ Pengaturan Akun</h1>
+
+      <div class="tracking-box">
+        <input type="text" placeholder="Nama Lengkap">
+        <input type="email" placeholder="Email">
+        <input type="text" placeholder="Nomor WhatsApp">
+        <input type="password" placeholder="Password Baru">
+        <button onclick="saveSettings()" class="btn-primary">Simpan Perubahan</button>
+      </div>
+
+      <div class="order-box" style="margin-top:30px;">
+        <h2>🔔 Pengaturan Notifikasi</h2>
+        <label style="display:flex;align-items:center;gap:10px;margin:15px 0;">
+          <input type="checkbox" checked> Email notifikasi
+        </label>
+        <label style="display:flex;align-items:center;gap:10px;">
+          <input type="checkbox" checked> WhatsApp notifikasi
+        </label>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    window.saveSettings = function() {
+      alert('✅ Pengaturan disimpan!');
+    };
+  </script>
+</body>
+</html>

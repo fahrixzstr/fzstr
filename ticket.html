@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ticket - FahriXZ Store</title>
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+</head>
+
+<body>
+  <div class="dashboard">
+    <aside class="sidebar">
+<<<<<<< HEAD
+      <h2>Ticket</h2>
+      <a href="user.html">🏠 Dashboard</a>
+      <a href="#" class="active">Ticket</a>
+    </aside>
+
+    <main class="content">
+      <h1>Ticket Bantuan</h1>
+=======
+      <h2>🎫 Ticket</h2>
+      <a href="user.html">🏠 Dashboard</a>
+      <a href="#" class="active">🎫 Ticket</a>
+    </aside>
+
+    <main class="content">
+      <h1>🎫 Ticket Bantuan</h1>
+>>>>>>> 4ad1937af8b22988b50e039f02d3f368e57c5c1c
+
+      <div class="tracking-box">
+        <input type="text" id="ticketTitle" placeholder="Judul masalah">
+        <textarea id="ticketMessage" placeholder="Jelaskan masalah..."></textarea>
+        <button onclick="sendTicket()" class="btn-primary">Kirim Ticket</button>
+      </div>
+
+      <div class="order-box">
+        <h2>📋 Riwayat Ticket</h2>
+        <div id="ticketList"></div>
+      </div>
+    </main>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDjSUSuUWl6GOh_vJ-GnYV1tvguv0_pRXI",
+      authDomain: "fahrixzstore.firebaseapp.com",
+      databaseURL: "https://fahrixzstore-default-rtdb.firebaseio.com",
+      projectId: "fahrixzstore"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    window.sendTicket = function
+        window.sendTicket = function() {
+      const title = document.getElementById('ticketTitle').value;
+      const message = document.getElementById('ticketMessage').value;
+
+      if (!title || !message) {
+        alert('Lengkapi data!');
+        return;
+      }
+
+      push(ref(db, 'tickets/'), { title, message, status: 'Pending', createdAt: Date.now() });
+      alert('Ticket dikirim!');
+    };
+
+    onValue(ref(db, 'tickets/'), snapshot => {
+      const data = snapshot.val();
+      const container = document.getElementById('ticketList');
+      if (!data) return;
+
+      let html = '';
+      for (let id in data) {
+        const item = data[id];
+        html += `<div class="order-card"><h3>${item.title}</h3><p>${item.message}</p><p style="color:#f59e0b;">${item.status}</p></div>`;
+      }
+      container.innerHTML = html;
+    });
+  </script>
+</body>
+</html>

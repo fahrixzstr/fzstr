@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="FahriXZ Store - Beli Akun Digital, Upgrade E-Wallet, QRIS, Jasa Kreatif" />
+  <title>FahriXZ Store | Digital Premium</title>
+
+  <!-- Manifest untuk PWA -->
+  <link rel="manifest" href="pwa/manifest.json" />
+  <meta name="theme-color" content="#00d9ff" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animation.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- Splash Screen -->
+  <div id="splash" style="position:fixed;inset:0;background:#0a0a0f;display:flex;justify-content:center;align-items:center;z-index:9999;flex-direction:column;">
+    <div style="width:50px;height:50px;border:4px solid rgba(0,217,255,0.2);border-top-color:#00d9ff;border-radius:50%;animation:spin 1s linear infinite;"></div>
+    <p style="margin-top:20px;color:#00d9ff;font-weight:600;">Loading...</p>
+    <style>@keyframes spin { to { transform: rotate(360deg) } }</style>
+  </div>
+
+  <!-- Promo Bar -->
+  <div class="promo-bar">🔥 FLASH SALE • Diskon hingga 50% • Trusted Store</div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <h2 style="display:flex; align-items:center; gap:8px;">
+      <img src="assets/image/logo.png" alt="Logo FahriXZ" style="height:24px;" />
+      FahriXZ
+    </h2>
+    <div class="nav-links">
+      <a href="#produk">Produk</a>
+      <a href="#testimoni">Testimoni</a>
+      <a href="#faq">FAQ</a>
+      <a href="login.html" style="color:#00d9ff;">Login</a>
+      <a href="support.html" style="color:#00d9ff; font-weight:600;">Support</a>
+      <a href="ticket.html" style="color:#00d9ff; font-weight:600;">Ticket Bantuan</a>
+      <a href="admin.html" style="color:#00d9ff; font-weight:600;">Admin</a>
+    </div>
+  </nav>
+
+  <!-- Products Section -->
+  <section id="produk" style="padding:60px 5%;">
+    <h2 style="text-align:center;font-size:2.5rem;margin-bottom:40px;">🔥 <span style="color:#00d9ff;">Produk</span> Trending</h2>
+    
+    <div class="category-filter" style="display:flex;gap:15px;justify-content:center;flex-wrap:wrap;margin-bottom:40px;">
+      <button class="filter-btn active" data-category="all" style="padding:12px 25px;background:#00d9ff;color:#000;border:none;border-radius:50px;font-weight:600;cursor:pointer;">Semua</button>
+      <button class="filter-btn" data-category="ewallet" style="padding:12px 25px;background:#12121a;color:#fff;border:1px solid #00d9ff;border-radius:50px;cursor:pointer;">E-Wallet</button>
+      <button class="filter-btn" data-category="bank" style="padding:12px 25px;background:#12121a;color:#fff;border:1px solid #00d9ff;border-radius:50px;cursor:pointer;">Bank</button>
+      <button class="filter-btn" data-category="qris" style="padding:12px 25px;background:#12121a;color:#fff;border:1px solid #00d9ff;border-radius:50px;cursor:pointer;">QRIS</button>
+      <button class="filter-btn" data-category="streaming" style="padding:12px 25px;background:#12121a;color:#fff;border:1px solid #00d9ff;border-radius:50px;cursor:pointer;">Streaming</button>
+      <button class="filter-btn" data-category="ai" style="padding:12px 25px;background:#12121a;color:#fff;border:1px solid #00d9ff;border-radius:50px;cursor:pointer;">AI</button>
+      <button class="filter-btn" data-category="service" style="padding:12px 25px;background:#12121a;color:#fff;border:1px solid #00d9ff;border-radius:50px;cursor:pointer;">Jasa</button>
+    </div>
+    
+    <div id="productGrid" class="product-grid"></div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats">
+    <div class="stats-card"><h1>12000+</h1><p>Transaksi</p></div>
+    <div class="stats-card"><h1>8000+</h1><p>User</p></div>
+    <div class="stats-card"><h1>4.9</h1><p>Rating</p></div>
+  </section>
+
+  <!-- Testimoni -->
+  <section id="testimoni" style="padding:60px 5%;">
+    <h2 style="text-align:center;font-size:2.5rem;margin-bottom:40px;">⭐ <span style="color:#00d9ff;">Testimoni</span></h2>
+    <div class="testi-grid">
+      <div class="testi-card"><p style="color:#00d9ff;font-weight:600;">Trusted Banget 🔥</p><p style="color:#a0a0b0;margin-top:10px;">Process cepat, admin responsif.</p></div>
+      <div class="testi-card"><p style="color:#00d9ff;font-weight:600;">Fast Respon ⚡</p><p style="color:#a0a0b0;margin-top:10px;">Tidak perlu lama, langsung jadi.</p></div>
+      <div class="testi-card"><p style="color:#00d9ff;font-weight:600;">Recommended 👑</p><p style="color:#a0a0b0;margin-top:10px;">Tempat terbaik!</p></div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" style="padding:60px 5%;">
+    <h2 style="text-align:center;font-size:2.5rem;margin-bottom:40px;">❓ <span style="color:#00d9ff;">FAQ</span></h2>
+    <div style="max-width:800px;margin:auto;">
+      <div class="faq-item">
+        <button class="faq-question">Apakah aman?<span>+</span></button>
+        <div class="faq-answer">Ya 100% aman! Transaction melalui Firebase dan chat WhatsApp.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Berapa lama proses?<span>+</span></button>
+        <div class="faq-answer">Estimasi 5-30 menit tergantung antrian.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="background:#050508;padding:40px 5%;text-align:center;border-top:1px solid rgba(0,217,255,0.2);">
+    <p style="color:#a0a0b0;">© 2025 FahriXZ Store • Trusted Digital Service</p>
+    <p style="color:#00d9ff;margin-top:10px;">WhatsApp: 085609949819</p>
+  </footer>
+
+  <!-- Floating Button Container -->
+  <div class="floating-container" id="floatingContainer" style="z-index:9999;">
+    <!-- Floating Buttons bisa ditambahkan di sini -->
+    <button class="floating-btn btn-toggle" id="btnToggle" title="Tampilkan Semua">&gt;</button>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/product.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/utils.js"></script>
+
+  <script>
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const splash = document.getElementById('splash');
+        if (splash) splash.style.display = 'none';
+      }, 1500);
+    });
+  </script>
+</body>
+</html>

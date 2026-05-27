@@ -1,0 +1,19 @@
+<!-- Floating Contact Component -->
+<div class="floating-contact" style="position:fixed;bottom:20px;right:20px;z-index:9998;display:flex;flex-direction:column;gap:10px;">
+  <button onclick="toggleContactMenu()" class="floating-btn" style="width:60px;height:60px;background:linear-gradient(135deg,#00d9ff,#667eea);border:none;border-radius:50%;color:#fff;font-size:24px;cursor:pointer;box-shadow:0 0 20px rgba(0,217,255,0.5);">💬</button>
+  
+  <div id="contactMenu" style="display:flex;flex-direction:column;gap:10px;opacity:0;visibility:hidden;transform:translateY(20px);transition:0.3s;">
+    <a href="https://wa.me/6285609949819" style="padding:12px 20px;background:#25D366;color:#fff;border-radius:50px;text-decoration:none;font-weight:600;display:flex;align-items:center;gap:8px;">💬 WhatsApp</a>
+    <a href="https://t.me/fahrixzstore" style="padding:12px 20px;background:#0088cc;color:#fff;border-radius:50px;text-decoration:none;font-weight:600;">✈️ Telegram</a>
+    <a href="mailto:fahrixzstore@gmail.com" style="padding:12px 20px;background:#ea4335;color:#fff;border-radius:50px;text-decoration:none;font-weight:600;">📧 Email</a>
+  </div>
+</div>
+
+<script>
+function toggleContactMenu() {
+  const menu = document.getElementById('contactMenu');
+  menu.style.opacity = menu.style.opacity === '1' ? '0' : '1';
+  menu.style.visibility = menu.style.visibility === 'visible' ? 'hidden' : 'visible';
+  menu.style.transform = menu.style.transform === 'translateY(0)' ? 'translateY(20px)' : 'translateY(0)';
+}
+</script>

@@ -1,0 +1,138 @@
+// js/loading-bar.js
+// ============================================================================
+
+/**
+ * Top Loading Bar untuk FahriXZ Store
+ */
+
+// Configuration
+const loadingBarConfig = {
+  height: '3px',
+  color: '#667eea',
+  backgroundColor: '#e0e0e0',
+  duration: 500
+};
+
+// Create loading bar element
+function createLoadingBar() {
+  // Remove existing
+  const existingBar = document.getElementById('topLoadingBar');
+  if (existingBar) existingBar.remove();
+  
+  // Create new loading bar
+  const loadingBar = document.createElement('div');
+  loadingBar.id = 'topLoadingBar';
+  loadingBar.className = 'top-loading-bar';
+  
+  // Inline styles
+  Object.assign(loadingBar.style, {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    width: '0%',
+    height: loadingBarConfig.height,
+    background: `linear-gradient(90deg, ${loadingBarConfig.color}, #764ba2)`,
+    zIndex: 99999,
+    transition: 'width 0.3s ease-in-out',
+    boxShadow: `0 0 10px ${loadingBarConfig.color}`
+  });
+  
+  document.body.appendChild(loadingBar);
+  
+  return loadingBar;
+}
+
+/* ============================
+   START LOADING BAR
+============================ */
+window.startLoadingBar = function() {
+  const loadingBar = createLoadingBar();
+  
+  // Start animation
+  requestAnimationFrame(() => {
+    loadingBar.style.width = '80%';
+    loadingBar.style.transition = 'width 2s ease-in-out';
+  });
+};
+
+/* ============================
+   COMPLETE LOADING BAR
+============================ */
+window.completeLoadingBar = function() {
+  const loadingBar = document.getElementById('topLoadingBar');
+  if (!loadingBar) return;
+  
+  // Complete to 100%
+  loadingBar.style.width = '100%';
+  loadingBar.style.transition = 'width 0.3s ease-out';
+  
+  // Fade out and remove
+  setTimeout(() => {
+    loadingBar.style.opacity = '0';
+    setTimeout(() => {
+      loadingBar.remove();
+    }, loadingBarConfig.duration);
+  }, 200);
+};
+
+/* ============================
+   FAIL LOADING BAR
+============================ */
+window.failLoadingBar = function() {
+  const loadingBar = document.getElementById('topLoadingBar');
+  if (!loadingBar) return;
+  
+  // Change to error color
+  loadingBar.style.background = 'linear-gradient(90deg, #ff6b6b, #ee5a5a)';
+  loadingBar.style.width = '100%';
+  
+  // Flash effect
+  setTimeout(() => {
+    loadingBar.style.opacity = '0';
+    setTimeout(() => {
+      loadingBar.remove();
+    }, loadingBarConfig.duration);
+  }, 500);
+};
+
+/* ============================
+   AUTO INITIALIZE
+============================ */
+document.addEventListener('DOMContentLoaded', () => {
+  // Show loading bar on page load
+  setTimeout(() => {
+    startLoadingBar();
+  }, 100);
+  
+  // Complete when page fully loaded
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      completeLoadingBar();
+    }, loadingBarConfig.duration);
+  });
+  
+  // Fail on error
+  window.addEventListener('error', () => {
+    failLoadingBar();
+  });
+});
+
+/* ============================
+   FETCH INTERCEPTOR (BONUS)
+============================ */
+// Auto show loading on fetch
+const originalFetch = window.fetch;
+window.fetch = async function(...args) {
+  startLoadingBar();
+  
+  try {
+    const response = await originalFetch.apply(this, args);
+    completeLoadingBar();
+    return response;
+  } catch (error) {
+    failLoadingBar();
+    throw error;
+  }
+};
+
+console.log("✅ Loading Bar module loaded!");

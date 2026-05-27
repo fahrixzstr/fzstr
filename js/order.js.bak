@@ -1,0 +1,141 @@
+// js/order.js
+// Order Functions
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+const firebaseConfig = {
+<<<<<<< HEAD
+  apiKey: "AIzaSyDjSUSuUWl6GOh_vJ-GnYV1tvguv0_pRXI",
+  authDomain: "fahrixzstore.firebaseapp.com",
+  databaseURL: "https://fahrixzstore-default-rtdb.firebaseio.com",
+    projectId: "fahrixzstore"
+};
+=======
+‎    apiKey: "AIzaSyDjSUSuUWl6GOh_vJ-GnYV1tvguv0_pRXI",
+‎    authDomain: "fahrixzstore.firebaseapp.com",
+‎    databaseURL: "https://fahrixzstore-default-rtdb.firebaseio.com",
+‎    projectId: "fahrixzstore",
+‎    storageBucket: "fahrixzstore.firebasestorage.app",
+‎    messagingSenderId: "1070736619563",
+‎    appId: "1:1070736619563:web:735cdd57d5c90373e1526e",
+‎    measurementId: "G-H7QL79SSMX"
+‎  };
+>>>>>>> 4ad1937af8b22988b50e039f02d3f368e57c5c1c
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+/* Generate Order ID */
+window.generateOrderId = function() {
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const random = Math.floor(1000 + Math.random() * 9000);
+  return `ORD-${year}${month}-${random}`;
+};
+
+/* Submit Order */
+window.submitOrder = async function() {
+  const name = document.getElementById('customerName').value;
+  const wa = document.getElementById('customerWa').value;
+  const product = document.getElementById('productSelect').value;
+  const brief = document.getElementById('orderBrief').value;
+  const deadline = document.getElementById('deadlineInput').value;
+
+  if (!name || !wa || !product) {
+    alert('Lengkapi data!');
+    return;
+  }
+
+  const orderId = window.generateOrderId();
+  const btn = document.querySelector('button[type="submit"]');
+
+  try {
+    btn.disabled = true;
+    btn.textContent = '⏳ Memproses...';
+
+    await set(ref(db, 'orders/' + orderId), {
+      orderId, name, wa, product, brief, deadline,
+      status: 'Pending', createdAt: Date.now()
+    });
+
+    document.getElementById('orderResult').innerHTML = `
+      <div style="background:#12121a;padding:20px;border-radius:15px;margin-top:20px;border:1px solid #00d9ff;">
+        <h3 style="color:#00d9ff;">✅ Pesanan Berhasil!</h3>
+        <p>Order ID: <strong>${orderId}</strong></p>
+        <p>Status: <span style="color:#f59e0b;">Pending</span></p>
+      </div>
+    `;
+
+<<<<<<< HEAD
+// ===== TARUH DI ATAS SEBELUM window.submitOrder =====
+
+/* Exit to Home */
+window.exitToHome = function() {
+  if (confirm('Yakin ingin kembali ke Home?')) {
+    window.location.href = 'index.html';
+  }
+};
+
+/* Populate Products from product.js */
+window.populateProducts = function() {
+  const select = document.getElementById('productSelect');
+  if (!select || typeof products === 'undefined') return;
+  
+  const categoryMap = {};
+  if (typeof categories !== 'undefined') {
+    categories.forEach(cat => {
+      categoryMap[cat.id] = cat.name;
+    });
+  }
+  
+  select.innerHTML = '<option value="">📦 Pilih Produk</option>';
+  
+  const grouped = {};
+  products.forEach(product => {
+    const cat = product.category || 'other';
+    if (!grouped[cat]) grouped[cat] = [];
+    grouped[cat].push(product);
+  });
+  
+  Object.keys(grouped).forEach(catId => {
+    const optgroup = document.createElement('optgroup');
+    optgroup.label = categoryMap[catId] || catId;
+    
+    grouped[catId].forEach(product => {
+      const option = document.createElement('option');
+      option.value = JSON.stringify({ name: product.name, price: product.price, desc: product.desc });
+      option.textContent = `${product.name} - ${product.price}`;
+      optgroup.appendChild(option);
+    });
+    
+    select.appendChild(optgroup);
+  });
+};
+
+document.addEventListener('DOMContentLoaded', function() {
+  if (typeof window.populateProducts === 'function') {
+    window.populateProducts();
+  }
+});
+
+=======
+>>>>>>> 4ad1937af8b22988b50e039f02d3f368e57c5c1c
+    // Send to WhatsApp
+    const message = `Halo Admin FahriXZ,\nSaya mau order:\n\nOrder ID: ${orderId}\nProduk: ${product}\nNama: ${name}\nWhatsApp: ${wa}\nBrief: ${brief}`;
+    window.open(`https://wa.me/6285609949819?text=${encodeURIComponent(message)}`, '_blank');
+
+  } catch (error) {
+    alert('Gagal: ' + error.message);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '📦 Buat Pesanan';
+  }
+};
+
+<<<<<<< HEAD
+console.log("✅ Order.js loaded!");
+=======
+console.log("✅ Order.js loaded!");
+>>>>>>> 4ad1937af8b22988b50e039f02d3f368e57c5c1c

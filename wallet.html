@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wallet - FahriXZ Store</title>
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+</head>
+
+<body>
+  <div class="dashboard">
+    <aside class="sidebar">
+      <h2>💰 Wallet</h2>
+      <a href="user.html">🏠 Dashboard</a>
+      <a href="#" class="active">💰 Wallet</a>
+    </aside>
+
+    <main class="content">
+      <h1>💰 Wallet Saya</h1>
+
+      <div class="stats-grid">
+        <div class="stats-card">
+          <h2 style="color:#00d9ff;">Rp250.000</h2>
+          <p>Saldo Utama</p>
+        </div>
+        <div class="stats-card">
+          <h2 style="color:#f59e0b;">Rp50.000</h2>
+          <p>Saldo Pending</p>
+        </div>
+      </div>
+
+      <div class="tracking-box">
+        <h2>🏦 Withdraw</h2>
+        <input type="number" id="withdrawAmount" placeholder="Nominal Withdraw">
+        <input type="text" id="withdrawBank" placeholder="Bank / E-Wallet">
+        <input type="text" id="withdrawRekening" placeholder="Nomor Rekening">
+        <input type="text" id="withdrawName" placeholder="Nama Penerima">
+        <button onclick="requestWithdraw()" class="btn-primary">Kirim Withdraw</button>
+      </div>
+
+      <div class="order-box">
+        <h2>📜 Riwayat Withdraw</h2>
+        <div id="withdrawHistory"></div>
+      </div>
+    </main>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDjSUSuUWl6GOh_vJ-GnYV1tvguv0_pRXI",
+      authDomain: "fahrixzstore.firebaseapp.com",
+      databaseURL: "https://fahrixzstore-default-rtdb.firebaseio.com",
+      projectId: "fahrixzstore"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    window.requestWithdraw = function() {
+      const amount = document.getElementById('withdrawAmount').value;
+      const bank = document.getElementById('withdrawBank').value;
+      const rekening = document.getElementById('withdrawRekening').value;
+      const nama = document.getElementById('withdrawName').value;
+
+      if (!amount || !bank) {
+        alert('Lengkapi data withdraw!');
+        return;
+      }
+
+      push(ref(db, 'withdraws/'), { amount, bank, rekening, nama, status: 'Pending', createdAt: Date.now() });
+      alert('Withdraw berhasil dikirim!');
+    };
+
+    onValue(ref(db, 'withdraws/'), snapshot => {
+      const data = snapshot.val();
+      const container = document.getElementById('withdrawHistory');
+      if (!data) return;
+
+      let html = '';
+      for (let id in data) {
+        const item = data[id];
+        html += `<div class="order-card"><h3>Rp${item.amount}</h3><p>${item.bank}</p><p style="color:#f59e0b;">${item.status}</p></div>`;
+      }
+      container.innerHTML = html;
+    });
+  </script>
+</body>
+</html>

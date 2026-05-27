@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voucher - FahriXZ Store</title>
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+</head>
+
+<body>
+  <div class="dashboard">
+    <aside class="sidebar">
+      <h2>🎟 Voucher</h2>
+      <a href="user.html">🏠 Dashboard</a>
+      <a href="#" class="active">🎟 Voucher</a>
+    </aside>
+
+    <main class="content">
+      <h1>🎟 Voucher Saya</h1>
+
+      <div class="stats-grid">
+        <div class="stats-card" style="border:1px solid #00d9ff;">
+          <h2 style="color:#00d9ff;">WELCOME50</h2>
+          <p>Diskon 50%</p>
+          <button class="btn-primary" style="margin-top:10px;padding:8px 15px;font-size:12px;" onclick="copyVoucher('WELCOME50')">Copy</button>
+        </div>
+        <div class="stats-card" style="border:1px solid #667eea;">
+          <h2 style="color:#667eea;">NEWUSER</h2>
+          <p>Potongan Rp10.000</p>
+          <button class="btn-primary" style="margin-top:10px;padding:8px 15px;font-size:12px;" onclick="copyVoucher('NEWUSER')">Copy</button>
+        </div>
+        <div class="stats-card" style="border:1px solid #f59e0b;">
+          <h2 style="color:#f59e0b;">GOLDMEMBER</h2>
+          <p>Bonus Rp20.000</p>
+          <button class="btn-primary" style="margin-top:10px;padding:8px 15px;font-size:12px;" onclick="copyVoucher('GOLDMEMBER')">Copy</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    window.copyVoucher = function(code) {
+      navigator.clipboard.writeText(code);
+      alert('Voucher ' + code + ' dicopy!');
+    };
+  </script>
+</body>
+</html>

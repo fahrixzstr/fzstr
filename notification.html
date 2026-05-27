@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notifikasi - FahriXZ Store</title>
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+</head>
+
+<body>
+  <div class="dashboard">
+    <aside class="sidebar">
+      <h2>🔔 Notifikasi</h2>
+      <a href="index.html">🏠 Home</a>
+      <a href="user.html">👤 Dashboard</a>
+      <a href="#" class="active">🔔 Notifikasi</a>
+    </aside>
+
+    <main class="content">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;">
+        <h1>🔔 Notifikasi</h1>
+        <button onclick="markAllRead()" style="padding:10px 20px;background:transparent;border:1px solid #00d9ff;color:#00d9ff;border-radius:10px;cursor:pointer;">✓ Tandai semua dibaca</button>
+      </div>
+
+      <div id="notifList">
+        <div class="order-card" style="border-left:4px solid #00d9ff;">
+          <h3>🎉 Selamat Datang!</h3>
+          <p>Terima kasih sudah bergabung di FahriXZ Store</p>
+          <small style="color:#a0a0b0;">Baru saja</small>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    window.markAllRead = function() {
+      alert('✅ Semua notifikasi ditandai dibaca!');
+    };
+  </script>
+</body>
+</html>

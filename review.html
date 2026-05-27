@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Review - FahriXZ Store</title>
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+</head>
+
+<body>
+  <div class="dashboard">
+    <aside class="sidebar">
+      <h2>⭐ Review</h2>
+      <a href="index.html">🏠 Home</a>
+    </aside>
+
+    <main class="content">
+      <h1>⭐ Review Produk</h1>
+
+      <div class="tracking-box">
+        <input type="text" id="reviewName" placeholder="Nama Anda">
+        <select id="reviewRating">
+          <option value="5">⭐⭐⭐⭐⭐</option>
+          <option value="4">⭐⭐⭐⭐</option>
+          <option value="3">⭐⭐⭐</option>
+          <option value="2">⭐⭐</option>
+          <option value="1">⭐</option>
+        </select>
+        <textarea id="reviewMessage" placeholder="Tulis review..."></textarea>
+        <button onclick="sendReview()" class="btn-primary">Kirim Review</button>
+      </div>
+
+      <div id="reviewContainer"></div>
+    </main>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+    const firebaseConfig = {
+        const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    window.sendReview = function() {
+      const name = document.getElementById('reviewName').value;
+      const rating = document.getElementById('reviewRating').value;
+      const message = document.getElementById('reviewMessage').value;
+
+      if (!name || !message) {
+        alert('Lengkapi data!');
+        return;
+      }
+
+      push(ref(db, 'reviews/'), { name, rating, message, createdAt: Date.now() });
+      alert('Review dikirim!');
+    };
+
+    onValue(ref(db, 'reviews/'), snapshot => {
+      const data = snapshot.val();
+      const container = document.getElementById('reviewContainer');
+      if (!data) return;
+
+      let html = '';
+      for (let id in data) {
+        const item = data[id];
+        html += `<div class="order-card"><h3>${item.name}</h3><p>${'⭐'.repeat(item.rating)}</p><p>${item.message}</p></div>`;
+      }
+      container.innerHTML = html;
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,211 @@
+// js/utils.js
+// ============================================================================
+
+/**
+ * Utility Functions untuk FahriXZ Store
+ */
+
+/* ============================
+   FORMAT RUPIAH
+============================ */
+window.formatRupiah = function(number) {
+  if (number === null || number === undefined || isNaN(number)) {
+    return 'Rp 0';
+  }
+  
+  return new Intl.NumberFormat('id-ID', {
+    style: 'currency',
+    currency: 'IDR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0
+  }).format(number);
+};
+
+/* ============================
+   COPY TEXT
+============================ */
+window.copyText = async function(text, showMessage = true) {
+  if (!text) {
+    showToast('Tidak ada teks untuk disalin!', 'error');
+    return false;
+  }
+  
+  try {
+    await navigator.clipboard.writeText(text);
+    if (showMessage) {
+      showToast('✅ Teks berhasil disalin!', 'success');
+    }
+    return true;
+  } catch (error) {
+    console.error('Copy error:', error);
+    showToast('❌ Gagal menyalin teks', 'error');
+    return false;
+  }
+};
+
+/* ============================
+   SHOW TOAST
+============================ */
+window.showToast = function(message, type = 'info', duration = 3000) {
+  // Remove existing toasts
+  const existingToasts = document.querySelectorAll('.toast');
+  existingToasts.forEach(toast => toast.remove());
+  
+  // Create toast element
+  const toast = document.createElement('div');
+  toast.className = `toast toast-${type}`;
+  toast.innerHTML = `
+    <span class="toast-icon">
+      ${type === 'success' ? '✅' : type === 'error' ? '❌' : 'ℹ️'}
+    </span>
+    <span class="toast-message">${message}</span>
+  `;
+  
+  // Add to DOM
+  document.body.appendChild(toast);
+  
+  // Trigger animation
+  setTimeout(() => {
+    toast.classList.add('show');
+  }, 10);
+  
+  // Auto remove
+  setTimeout(() => {
+    toast.classList.remove('show');
+    setTimeout(() => toast.remove(), 300);
+  }, duration);
+};
+
+/* ============================
+   SHOW/HIDE LOADER
+============================ */
+window.showLoader = function(message = 'Loading...') {
+  // Remove existing loader
+  const existingLoader = document.querySelector('.global-loader');
+  if (existingLoader) {
+    existingLoader.remove();
+  }
+  
+  // Create loader
+  const loader = document.createElement('div');
+  loader.className = 'global-loader';
+  loader.innerHTML = `
+    <div class="loader-content">
+      <div class="spinner-loader"></div>
+      <p>${message}</p>
+    </div>
+  `;
+  
+  document.body.appendChild(loader);
+  
+  // Trigger show animation
+  setTimeout(() => loader.classList.add('show'), 10);
+};
+
+window.hideLoader = function() {
+  const loader = document.querySelector('.global-loader');
+  if (loader) {
+    loader.classList.remove('show');
+    setTimeout(() => loader.remove(), 300);
+  }
+};
+
+/* ============================
+   GENERATE RANDOM ID
+============================ */
+window.generateId = function(prefix = 'ID') {
+  const timestamp = Date.now().toString(36).toUpperCase();
+  const random = Math.random().toString(36).substring(2, 6).toUpperCase();
+  return `${prefix}-${timestamp}-${random}`;
+};
+
+/* ============================
+   DATE FORMAT
+============================ */
+window.formatDate = function(timestamp, includeTime = true) {
+  if (!timestamp) return '-';
+  
+  const date = new Date(timestamp);
+  const options = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  };
+  
+  if (includeTime) {
+    options.hour = '2-digit';
+    options.minute = '2-digit';
+  }
+  
+  return date.toLocaleString('id-ID', options);
+};
+
+/* ============================
+   TIME AGO (RELATIVE TIME)
+============================ */
+window.timeAgo = function(timestamp) {
+  if (!timestamp) return '-';
+  
+  const now = Date.now();
+  const diff = now - timestamp;
+  
+  const seconds = Math.floor(diff / 1000);
+  const minutes = Math.floor(seconds / 60);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
+  
+  if (seconds < 60) return 'Baru saja';
+  if (minutes < 60) return `${minutes} menit yang lalu`;
+  if (hours < 24) return `${hours} jam yang lalu`;
+  if (days < 7) return `${days} hari yang lalu`;
+  
+  return formatDate(timestamp);
+};
+
+/* ============================
+   DEBOUNCE FUNCTION
+============================ */
+window.debounce = function(func, wait = 300) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+};
+
+/* ============================
+   VALIDATION
+============================ */
+window.isValidEmail = function(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+};
+
+window.isValidPhone = function(phone) {
+  // Indonesian phone number format
+  const phoneRegex = /^(\+62|62|0)[0-9]{9,12}$/;
+  return phoneRegex.test(phone.replace(/\s/g, ''));
+};
+
+/* ============================
+   SCROLL TO
+============================ */
+window.scrollToElement = function(elementId, offset = 0) {
+  const element = document.getElementById(elementId);
+  if (!element) return;
+  
+  const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+  const offsetPosition = elementPosition - offset;
+  
+  window.scrollTo({
+    top: offsetPosition,
+    behavior: 'smooth'
+  });
+};
+
+console.log("✅ Utils module loaded!");

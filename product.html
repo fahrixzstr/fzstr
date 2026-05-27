@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Produk & Jasa - FahriXZ Store">
+  <title>Produk & Jasa - FahriXZ Store</title>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <h2>⚡ FahriXZ</h2>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="login.html">Login</a>
+    </div>
+  </nav>
+
+  <!-- Products Page -->
+  <section class="products-page">
+    <div class="section-title">
+      <h1>🛍 Produk & Jasa</h1>
+      <p>Semua layanan digital tersedia</p>
+    </div>
+
+    <!-- Search -->
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Cari layanan...">
+    </div>
+
+    <!-- Category Filter -->
+    <div class="category-filter">
+      <button class="filter-btn active" data-category="all">Semua</button>
+      <button class="filter-btn" data-category="ewallet">E-Wallet</button>
+      <button class="filter-btn" data-category="bank">Bank Digital</button>
+      <button class="filter-btn" data-category="qris">QRIS</button>
+      <button class="filter-btn" data-category="streaming">Streaming</button>
+      <button class="filter-btn" data-category="ai">AI Tools</button>
+      <button class="filter-btn" data-category="editing">Editing</button>
+      <button class="filter-btn" data-category="service">Jasa</button>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="product-grid" id="productGrid"></div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="background:#050508;padding:40px 5%;text-align:center;border-top:1px solid rgba(0,217,255,0.2);">
+    <p style="color:#a0a0b0;">© 2025 FahriXZ Store</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/product.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    // Render products
+    function renderProducts(productList) {
+      const grid = document.getElementById('productGrid');
+      grid.innerHTML = productList.map(p => `
+        <div class="product-card">
+          <img src="${p.image}" alt="${p.name}" onerror="this.src='assets/image/placeholder.jpg'">
+          <span class="badge" style="position:absolute;top:10px;right:10px;background:${getBadgeColor(p.badge)};color:#000;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:600;">${p.badge}</span>
+          <h3>${p.name}</h3>
+          <p style="color:#a0a0b0;font-size:14px;">${p.desc}</p>
+          <h2 style="color:#00d9ff;margin:10px 0;">${p.price}</h2>
+          <button class="btn-primary" onclick="orderProduct('${p.name}','${p.price}','${p.category}')">Order Sekarang</button>
+        </div>
+      `).join('');
+    }
+
+    function getBadgeColor(badge) {
+      const colors = {'Best Seller':'#00d9ff','Popular':'#667eea','Premium':'#f59e0b','Fast Process':'#22c55e','Hot':'#ef4444'};
+      return colors[badge] || '#00d9ff';
+    }
+
+    function orderProduct(name, price, category) {
+      window.location.href = `order.html?product=${encodeURIComponent(name)}&price=${encodeURIComponent(price)}&category=${encodeURIComponent(category)}`;
+    }
+
+    // Initial render
+    renderProducts(products);
+
+    // Filter
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const cat = btn.dataset.category;
+        const filtered = cat === 'all' ? products : products.filter(p => p.category === cat);
+        renderProducts(filtered);
+      });
+    });
+
+    // Search
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+      const keyword = e.target.value.toLowerCase();
+      const filtered = products.filter(p => p.name.toLowerCase().includes(keyword));
+      renderProducts(filtered);
+    });
+  </script>
+</body>
+</html>

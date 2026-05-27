@@ -1,0 +1,34 @@
+// js/rate-limit.js
+// Rate Limiter untuk Login
+
+let loginAttempts = 0;
+let lockedUntil = null;
+
+window.checkRateLimit = function() {
+  const now = Date.now();
+  
+  // Check if locked
+  if (lockedUntil && now < lockedUntil) {
+    const remaining = Math.ceil((lockedUntil - now) / 1000);
+    alert(`Terlalu banyak percobaan. Coba lagi dalam ${remaining} detik.`);
+    return false;
+  }
+  
+  return true;
+};
+
+window.recordFailedAttempt = function() {
+  loginAttempts++;
+  
+  if (loginAttempts >= 5) {
+    // Lock for 5 minutes
+    lockedUntil = Date.now() + (5 * 60 * 1000);
+    loginAttempts = 0;
+    alert('Akun terkunci sementara karena terlalu banyak percobaan login.');
+  }
+};
+
+window.resetRateLimit = function() {
+  loginAttempts = 0;
+  lockedUntil = null;
+};
